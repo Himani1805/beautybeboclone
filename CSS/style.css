@@ -56,6 +56,9 @@
 }
 #main {
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px 5px;
     /* background-color: blue; */
     margin: auto;
     padding: auto;
@@ -81,9 +84,10 @@
 .dealCard{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 10px 0px;
-    /* padding: 20px 5px; */
+    gap: 3px 0px;
+    padding: 10px 20px 30px;
     width: 250px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 
@@ -92,6 +96,9 @@
     width: 200px;
     height: 250px;
 
+}
+.dealcard p, .detailImgCard p{
+    text-align: center;
 }
 .dealButton{
     display: flex;
@@ -123,10 +130,23 @@
 .sorteItemsCard {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px 10px;
 }
 .itemCard {
     display: flex;
+    justify-content: center;
+    border: 1px solid red;
+    margin: 10px 0px;
+    padding: 20px 0px;
+    
+    /* width: 390px; */
+
+}
+.imgCard{
+    border: 1px solid blue;
+    width: 45%;
+    display: flex;
+    justify-content: center;
 
 }
 .imgCard img {
@@ -134,6 +154,17 @@
     height: 150px;
 }
 .detailImgCard {
+    border: 1px solid greenyellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: left;
+    width: 60%;
+    padding: 5% 0%;
+}
+.detailImgCard p{
+    text-align: left;
+
 
 }
 
