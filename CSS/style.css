@@ -1,0 +1,177 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: Cambria;
+    border: border-box;
+}
+#container{
+    width: 100%;   
+}
+#headerBanner img {
+    width: 100%;
+    height: 80px;
+
+}
+#headerAccount{
+    width: 100%;
+    height: 80px;
+    background-color: rgb(251, 248, 250);
+    display: flex;
+    justify-content: space-evenly;
+}
+.nav-search{
+    display: flex;
+    width: 620px;
+    
+
+}
+.search-select{
+    background-color: white;
+    width: 50px;
+    text-align: center;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border: none;
+}
+.search-input{
+    width: 100px;
+    border: none;
+    
+}
+#headerMenu{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(226, 43, 180);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15%;
+    box-sizing: border-box;
+}
+#headerMenu a{
+    text-decoration: none;
+    color: white;
+    padding-right: 20px;
+    font-weight:700;
+}
+#main {
+    width: 80%;
+    /* background-color: blue; */
+    margin: auto;
+    padding: auto;
+
+}
+#contactInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.Images {
+    display: flex;
+    gap: 10px;
+
+}
+.wrapping {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+.dealCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px 0px;
+    /* padding: 20px 5px; */
+    width: 250px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+}
+.dealCard img{
+    width: 200px;
+    height: 250px;
+
+}
+.dealButton{
+    display: flex;
+    gap: 5px;
+
+}
+
+#addToCart{
+    padding: 3px 10px;
+    background-color: rgb(226, 43, 180);
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+}
+#wishList{
+    padding: 3px;
+    background-color: rgb(71, 69, 69);
+    color: white;
+    border: none;
+    border-radius: 2px;
+
+}
+#sortedItems {
+    display: flex;
+    gap: 20px;
+
+}
+.sorteItemsCard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.itemCard {
+    display: flex;
+
+}
+.imgCard img {
+    width: 100px;
+    height: 150px;
+}
+.detailImgCard {
+
+}
+
+#footer{
+    background-color: black;
+    color: white;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.footerMenu {
+    margin: 30px 0px;
+}
+.footerMenu h5 {
+    padding: 5px 0px;
+    color: #d3d3d3;
+
+}
+.footerMenu p{
+    color: rgb(241, 10, 110);
+
+
+}
+.footerMenu ul li {
+    list-style-type: circle;
+    padding: 5px 0px;
+
+}
+.footerMenu ul li a, .footerMenu ul li h5 {
+    color: #d3d3d3;
+    text-decoration: none;
+    
+}
+.footerMenu ul li a:visited,.footerMenu ul li p:visited{
+    color: #d3d3d3;
+    
+}
+.footerMenu ul li a:hover{
+    color: rgb(241, 10, 110);
+    
+}
