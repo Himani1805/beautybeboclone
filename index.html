@@ -14,7 +14,7 @@
                 <div id="logo">
                     <img src="img/logo.png" alt="Beauty Store">
                 </div>
-                <form class="nav-search" action="#">
+                <form class="nav-search" id="searchForm" action="#">
                     <div class="cat-drop">
                         <input type="radio" name="cat" id="c-all" checked>
                         <input type="radio" name="cat" id="c-makeup">
@@ -33,11 +33,11 @@
                             <label for="c-hair">Hair</label>
                         </div>
                     </div>
-                    <input class="search-input" type="search" placeholder="Search lipstick, serum, lehenga...">
+                    <input class="search-input" id="searchInput" type="search" placeholder="Search lipstick, serum, lehenga...">
                     <button class="search-btn" type="submit">Search</button>
                 </form>
                 <div class="header-links">
-                    <a href="#">Sign in</a>
+                    <a href="#" id="signLink">Sign in</a>
                     <div class="link-drop">
                         <a href="#" id="wishLink">Wishlist <span id="wishCount">0</span></a>
                         <div class="bag-panel" id="wishPanel" hidden></div>
@@ -305,6 +305,7 @@
             </div>
         </div>
         <div id="main">
+            <p id="searchEmpty" hidden>No products match that search.</p>
             <div class ="wrapping">
                 <div class="dealCard">
                     <img src="img/products/lehenga-red.jpg" alt="">

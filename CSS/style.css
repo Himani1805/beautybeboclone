@@ -616,6 +616,23 @@ a {
     letter-spacing: 0;
 }
 
+#searchEmpty {
+    text-align: center;
+    margin: 28px 16px 8px;
+    color: #666;
+    font-size: 15px;
+}
+
+#searchEmpty[hidden],
+.dealCard.is-hidden,
+.itemCard.is-hidden,
+.wrapping.is-hidden,
+.promo.is-hidden,
+.store-note.is-hidden,
+#sortedItems > div.is-hidden {
+    display: none;
+}
+
 .bag-panel[hidden] {
     display: none;
 }

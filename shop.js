@@ -10,6 +10,11 @@
     var cartCount = document.getElementById("cartCount");
     var wishCount = document.getElementById("wishCount");
     var toast = document.getElementById("toast");
+    var searchForm = document.getElementById("searchForm");
+    var searchInput = document.getElementById("searchInput");
+    var searchEmpty = document.getElementById("searchEmpty");
+    var signLink = document.getElementById("signLink");
+    var signedIn = sessionStorage.getItem("beauty-user") === "1";
 
     function load(key) {
         try {
@@ -68,6 +73,89 @@
     function closePanels() {
         cartPanel.hidden = true;
         wishPanel.hidden = true;
+    }
+
+    function categoryOf(name) {
+        var text = name.toLowerCase();
+        if (/lehenga|saree|salwar|choli|dupatta|bath brush|body wash|bodywash|beard|perfume|roll on|baby|chicco/.test(text)) {
+            return "other";
+        }
+        if (/shampoo|hair|dandruff|dryer|styler/.test(text)) {
+            return "hair";
+        }
+        if (/lip|foundation|brush|eyeliner|kohl|blender|sponge|mascara|kajal/.test(text)) {
+            return "makeup";
+        }
+        if (/scrub|face wash|serum|retinol|moistur|lotion|cream|pimple|face/.test(text)) {
+            return "skin";
+        }
+        return "other";
+    }
+
+    function selectedCategory() {
+        if (document.getElementById("c-makeup").checked) {
+            return "makeup";
+        }
+        if (document.getElementById("c-skin").checked) {
+            return "skin";
+        }
+        if (document.getElementById("c-hair").checked) {
+            return "hair";
+        }
+        return "all";
+    }
+
+    function matchesQuery(name, query) {
+        if (!query) {
+            return true;
+        }
+        return query.split(/\s+/).every(function (word) {
+            var keys = [word];
+            if (word === "lipstick" || word === "lipsticks") {
+                keys.push("lip");
+            }
+            if (word === "serum" || word === "serums") {
+                keys.push("retinol", "vitamin");
+            }
+            if (word === "saree" || word === "sarees") {
+                keys.push("saree");
+            }
+            return keys.some(function (key) {
+                return name.indexOf(key) !== -1;
+            });
+        });
+    }
+
+    function applyFilter() {
+        var query = searchInput.value.trim().toLowerCase();
+        var category = selectedCategory();
+        var shown = 0;
+
+        document.querySelectorAll(".dealCard, .itemCard").forEach(function (card) {
+            var name = card.querySelector("p").textContent.toLowerCase();
+            var matchesText = matchesQuery(name, query);
+            var matchesCat = category === "all" || categoryOf(name) === category;
+            var visible = matchesText && matchesCat;
+            card.classList.toggle("is-hidden", !visible);
+            if (visible) {
+                shown += 1;
+            }
+        });
+
+        document.querySelectorAll(".wrapping, #sortedItems > div").forEach(function (box) {
+            var any = box.querySelector(".dealCard:not(.is-hidden), .itemCard:not(.is-hidden)");
+            box.classList.toggle("is-hidden", !any);
+        });
+
+        var filtering = Boolean(query) || category !== "all";
+        document.querySelectorAll(".promo, .store-note").forEach(function (block) {
+            block.classList.toggle("is-hidden", filtering);
+        });
+        searchEmpty.hidden = shown !== 0;
+    }
+
+    function renderSign() {
+        signLink.textContent = signedIn ? "Sign out" : "Sign in";
     }
 
     function rowHtml(item, qty) {
@@ -177,15 +265,31 @@
 
         if (event.target.closest("#cartLink")) {
             event.preventDefault();
-            wishPanel.hidden = true;
-            cartPanel.hidden = !cartPanel.hidden;
+            var showCart = cartPanel.hidden;
+            closePanels();
+            cartPanel.hidden = !showCart;
             return;
         }
 
         if (event.target.closest("#wishLink")) {
             event.preventDefault();
-            cartPanel.hidden = true;
-            wishPanel.hidden = !wishPanel.hidden;
+            var showWish = wishPanel.hidden;
+            closePanels();
+            wishPanel.hidden = !showWish;
+            return;
+        }
+
+        if (event.target.closest("#signLink")) {
+            event.preventDefault();
+            signedIn = !signedIn;
+            if (signedIn) {
+                sessionStorage.setItem("beauty-user", "1");
+                showToast("Signed in");
+            } else {
+                sessionStorage.removeItem("beauty-user");
+                showToast("Signed out");
+            }
+            renderSign();
             return;
         }
 
@@ -194,5 +298,17 @@
         }
     });
 
+    searchForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        applyFilter();
+        document.getElementById("main").scrollIntoView({ behavior: "smooth" });
+    });
+
+    searchInput.addEventListener("input", applyFilter);
+    document.querySelectorAll(".cat-drop input").forEach(function (input) {
+        input.addEventListener("change", applyFilter);
+    });
+
+    renderSign();
     render();
 })();
